@@ -1,6 +1,6 @@
 <p align="center" style="margin-bottom: 32px">
   <a href="https://erdkse.com" >
-    <img src="https://unifimes.edu.br/filemanager_uploads/files/documentos/institucional/logomarcas/oficial2.png" alt="AdminLTE logo" width="636" height="147">
+    <img src="https://unifimes.edu.br/filemanager_uploads/files/documentos/institucional/logomarcas/oficial2.png" alt="AdminLTE logo" width="336" height="77">
   </a>
 </p>
 
