@@ -10,9 +10,11 @@
   O objetivo deste projeto é desenvolver uma aplicação python para controlar as notas dos alunos
 </p>
 <br>
-<h1 >Bibliotecas Utilizadas</h1>
+<h1 >Bibliotecas</h1>
 
-[CustomKinter](https://github.com/TomSchimansky/CustomTkinter/tree/master)
+#### [Colorama](https://pypi.org/project/colorama/)
+#### [Tabulate](https://pypi.org/project/tabulate/)
 
 <h1 >Banco de Dados</h1>
-Postgress
+
+#### [SQLite](https://www.sqlite.org/index.html)
