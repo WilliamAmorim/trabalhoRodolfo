@@ -34,8 +34,8 @@
 * CRUD de Professores 
 * Relatório de Notas 
 * Ranking de Notas 
-
-Exportação de relatórios em Excel 
+* Exportação de relatórios em Excel
+  
 <h1> UML </h1>
 
 ![UML Banco](https://github.com/WilliamAmorim/trabalhoRodolfo/blob/main/gradeManager/GradeManager.jpg)
