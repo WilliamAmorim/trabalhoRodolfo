@@ -77,9 +77,9 @@ class curso:
                     cursor.execute('UPDATE curso SET nome = ? WHERE id=?', (nome,id))
                     result2 = cursor.fetchone()
                     if result2:
-                        print(Fore.RED+f"curso alterada com sucesso"+Style.RESET_ALL)
+                        print(Fore.RED+f"Não foi possivel editar curso"+Style.RESET_ALL)
                     else:
-                        print(Fore.GREEN+f"Não foi possivel editar curso"+Style.RESET_ALL)
+                        print(Fore.GREEN+f"curso alterada com sucesso"+Style.RESET_ALL)
                 else:
                     print(Fore.RED+f"curso não encontrada"+Style.RESET_ALL)        
              

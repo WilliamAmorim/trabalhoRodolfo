@@ -3,6 +3,7 @@ from colorama   import Fore, Style
 from Disciplina import Disciplina
 from curso import curso
 from aluno import aluno
+from professor import professor
 import cmd
 
 
@@ -48,6 +49,8 @@ class CommandInterpreter(cmd.Cmd):
             aluno.list_aluno()
         elif arg== 'curso':
             curso.list_curso()
+        elif arg== 'professor':
+            professor.list_professor()
 
     def do_delete_disciplina(self,arg):        
         Disciplina.delete_disciplina(arg)
@@ -62,6 +65,13 @@ class CommandInterpreter(cmd.Cmd):
         cpf=input("insira o nome do cpf") 
         telefone=input("insira o nome do telefone") 
         aluno.add_aluno(nome,cpf,telefone)
+    def do_add_professor(self,arg):
+        nome=input("insira o nome do professor") 
+        cpf=input("insira o nome do cpf") 
+        email=input("insira o email") 
+        senha=input("insira o senha") 
+        ID_curso=input("insira o ID do curso") 
+        professor.add_professor(nome,cpf,email,senha,ID_curso)
     def do_delete_aluno(self,arg):        
         aluno.delete_aluno(arg)
         
