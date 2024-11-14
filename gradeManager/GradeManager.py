@@ -1,6 +1,7 @@
 from tabulate   import tabulate
 from colorama   import Fore, Style
 from Disciplina import Disciplina
+from curso import curso
 from aluno import aluno
 import cmd
 
@@ -34,19 +35,28 @@ class CommandInterpreter(cmd.Cmd):
 
     def do_sair(self, arg):
         "Sair do prorgama"
-        print("Saindo...")
+        print("Saindo...") 
         return True  # Retorna True para encerrar o loop
     def do_add_disciplina(self,arg):           
         Disciplina.add_disciplina(arg)
+    def do_add_curso(self,arg):           
+        curso.add_curso(arg)
     def do_list(self,arg):
         if arg == 'disciplina':
             Disciplina.list_disciplina()
         elif arg== 'aluno':
             aluno.list_aluno()
+        elif arg== 'curso':
+            curso.list_curso()
+
     def do_delete_disciplina(self,arg):        
         Disciplina.delete_disciplina(arg)
+    def do_delete_curso(self,arg):        
+        curso.delete_curso(arg)
     def do_update_disciplina(self,arg):            
         Disciplina.update_disciplina(arg)
+    def do_update_curso(self,arg):            
+        curso.update_curso(arg)
     def do_add_aluno(self,arg):
         nome=input("insira o nome do aluno") 
         cpf=input("insira o nome do cpf") 
