@@ -3,14 +3,14 @@ from colorama import Fore, Style
 from tabulate import tabulate
 class aluno:
      
-     def add_aluno(nome,cpf,telefone,senha):        
+     def add_aluno(nome,cpf,senha,telefone):        
         try:
             # Conecta no banco de dados
             with sqlite3.connect('grademanager.db') as conn:
 
                 cursor=conn.cursor()
         
-                cursor.execute('INSERT INTO aluno (nome,CPF,telefone,senha) VALUES (?,?,?,?)', (nome,cpf,telefone,senha))        
+                cursor.execute('INSERT INTO aluno (nome,CPF,senha,telefone) VALUES (?,?,?,?)', (nome,cpf,senha,telefone))        
                 result = cursor.fetchone()
 
                 if result:

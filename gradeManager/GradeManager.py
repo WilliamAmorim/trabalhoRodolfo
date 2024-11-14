@@ -97,7 +97,7 @@ class CommandInterpreter(cmd.Cmd):
         senha = input("Insira a senha: ")
         telefone=input("insira o nome do telefone") 
 
-        aluno.add_aluno(nome,cpf,telefone,senha)
+        aluno.add_aluno(nome,cpf,senha,telefone)
     def do_add_professor(self, arg):
         def validar_cpf_professor(cpf):
             # Remove caracteres não numéricos
