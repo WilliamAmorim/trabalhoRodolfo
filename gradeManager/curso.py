@@ -85,3 +85,14 @@ class curso:
              
         except Exception as e:
             print(Fore.RED+f"Não foi possivel editar curso {e}"+Style.RESET_ALL)
+
+    def validacao_curso(id):
+        try:
+            with sqlite3.connect('grademanager.db') as conn:
+                cursor = conn.cursor()
+                cursor.execute('SELECT 1 FROM curso WHERE id = ?', (id,))
+                result = cursor.fetchone()
+                return result is not None
+        except Exception as e:
+            print(Fore.RED + f"Erro ao verificar curso: {e}" + Style.RESET_ALL)
+            return False

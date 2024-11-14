@@ -2,7 +2,6 @@ import sqlite3
 from colorama import Fore, Style
 from tabulate import tabulate
 class professor:
-     
      def add_professor(nome,CPF,email,senha,ID_curso):        
         try:
             # Conecta no banco de dados

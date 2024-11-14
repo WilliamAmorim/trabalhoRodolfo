@@ -2,6 +2,7 @@ from tabulate   import tabulate
 from colorama   import Fore, Style
 from Disciplina import Disciplina
 from curso import curso
+from Nota import Nota
 from aluno import aluno
 from professor import professor
 import cmd
@@ -61,21 +62,113 @@ class CommandInterpreter(cmd.Cmd):
     def do_update_curso(self,arg):            
         curso.update_curso(arg)
     def do_add_aluno(self,arg):
+        def validar_cpf_aluno(cpf):
+            cpf = ''.join(filter(str.isdigit, cpf))
+            
+            if len(cpf) != 11:
+                return False, "CPF deve conter 11 dígitos."
+            
+            soma_digitos = sum(int(digito) for digito in cpf)
+            
+            faixas_validas = [
+                range(10, 13),  
+                range(21, 24),  
+                range(32, 35),  
+                range(43, 46),  
+                range(54, 57),  
+                range(65, 68),  
+                range(76, 79),  
+                range(87, 89) 
+            ]
+            
+            for faixa in faixas_validas:
+                if soma_digitos in faixa:
+                    return True, f"CPF válido."
+                return False, f"CPF é inválido."
+
         nome=input("insira o nome do aluno") 
         cpf=input("insira o nome do cpf") 
+        
+        valido, mensagem = validar_cpf_aluno(cpf)
+        if not valido:
+            print(Fore.RED + mensagem + Style.RESET_ALL)
+            return 
+        
         telefone=input("insira o nome do telefone") 
+        
         aluno.add_aluno(nome,cpf,telefone)
-    def do_add_professor(self,arg):
-        nome=input("insira o nome do professor") 
-        cpf=input("insira o nome do cpf") 
-        email=input("insira o email") 
-        senha=input("insira o senha") 
-        ID_curso=input("insira o ID do curso") 
-        professor.add_professor(nome,cpf,email,senha,ID_curso)
+    def do_add_professor(self, arg):
+        def validar_cpf_professor(cpf):
+            # Remove caracteres não numéricos
+            cpf = ''.join(filter(str.isdigit, cpf))
+        
+            if len(cpf) != 11:
+                return False, "CPF deve conter 11 dígitos."
+
+            soma_digitos = sum(int(digito) for digito in cpf)
+
+            faixas_validas = [
+                range(10, 13),  
+                range(21, 24),  
+                range(32, 35),  
+                range(43, 46),  
+                range(54, 57),  
+                range(65, 68),  
+                range(76, 79),  
+                range(87, 89)   
+            ]
+
+            for faixa in faixas_validas:
+                if soma_digitos in faixa:
+                    return True, f"CPF é válido."
+            return False, f"CPF é inválido."
+
+        nome = input("Insira o nome do professor: ")
+        cpf = input("Insira o CPF do professor: ")
+    
+    # Validação da soma do CPF
+        valido, mensagem = validar_cpf_professor(cpf)
+        if not valido:
+            print(Fore.RED + mensagem + Style.RESET_ALL)
+            return
+
+        email = input("Insira o email: ")
+        senha = input("Insira a senha: ")
+        ID_curso = input("Insira o ID do curso: ")
+        
+        if not curso.validacao_curso(ID_curso):
+            print(Fore.RED + "ID do curso inválido. O curso não existe." + Style.RESET_ALL)
+            return
+    
+        professor.add_professor(nome, cpf, email, senha, ID_curso)
     def do_delete_aluno(self,arg):        
         aluno.delete_aluno(arg)
         
-    
-    
+    def do_add_nota(self,arg):
+        try:
+            ID_professor = int(input("Insira o ID do professor:"))
+            if Nota.verificar_id_professor(ID_professor):
+                print(Fore.GREEN + f'ID encontrado' + Style.RESET_ALL)
+            else:
+                print(Fore.RED + f'ID não encontrado' + Style.RESET_ALL)
+                return
+
+            ID_aluno = int(input("Insira o ID do aluno:"))
+            if Nota.verificar_id_aluno(ID_aluno):
+                print(Fore.GREEN + f'ID encontrado' + Style.RESET_ALL)
+            else:
+                print(Fore.RED + f'ID não encontrado' + Style.RESET_ALL)
+                return
+
+            ID_disciplina = int(input("Insira o ID da disciplina:"))
+            if Nota.verificar_id_disciplina(ID_disciplina):
+                print(Fore.GREEN + f'Disciplina encontrada' + Style.RESET_ALL)
+            else:
+                print(Fore.RED + f'Disciplina não encontrada' + Style.RESET_ALL)
+                return
+
+        except ValueError:
+            print(Fore.RED + f'Por favor insira um valor válido' + Style.RESET_ALL)
+
 if __name__ == '__main__':
     CommandInterpreter().cmdloop()
