@@ -10,7 +10,7 @@ import cmd
 
 class CommandInterpreter(cmd.Cmd):                                                        
                                                           
-    logo =  Fore.MAGENTA+r"   _____               _      __  __                                   "+"\n"
+    logo=Fore.MAGENTA+r"   _____               _      __  __                                   "+"\n"
     logo +=           r"  / ____|             | |    |  \/  |                                  "+"\n"
     logo +=           r" | |  __ _ __ __ _  __| | ___| \  / | __ _ _ __   __ _  __ _  ___ _ __ "+"\n"
     logo +=           r" | | |_ | '__/ _` |/ _` |/ _ \ |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|"+Style.RESET_ALL+"\n"
@@ -36,14 +36,17 @@ class CommandInterpreter(cmd.Cmd):
         return command, arg, line
 
     def do_sair(self, arg):
-        "Sair do prorgama"
+        "Sair do programa"
         print("Saindo...") 
         return True  # Retorna True para encerrar o loop
-    def do_add_disciplina(self,arg):           
+    def do_add_disciplina(self,arg):    
+        "adicionar diciplina:add_diciplina <nome da diciplina>"       
         Disciplina.add_disciplina(arg)
-    def do_add_curso(self,arg):           
+    def do_add_curso(self,arg): 
+        "adicionar curso:add_curso <nome do curso>"             
         curso.add_curso(arg)
     def do_list(self,arg):
+        "listar item :list < tabela >"   
         if arg == 'disciplina':
             Disciplina.list_disciplina()
         elif arg== 'aluno':
@@ -53,15 +56,20 @@ class CommandInterpreter(cmd.Cmd):
         elif arg== 'professor':
             professor.list_professor()
 
-    def do_delete_disciplina(self,arg):        
+    def do_delete_disciplina(self,arg): 
+        "deletar diciplina:delete_diciplina < ID >"         
         Disciplina.delete_disciplina(arg)
-    def do_delete_curso(self,arg):        
+    def do_delete_curso(self,arg):  
+        "deletar curso:delete_curso < ID >"       
         curso.delete_curso(arg)
-    def do_update_disciplina(self,arg):            
+    def do_update_disciplina(self,arg): 
+        "update diciplina:update_diciplina < ID >"            
         Disciplina.update_disciplina(arg)
-    def do_update_curso(self,arg):            
+    def do_update_curso(self,arg):  
+        "update curso:update_curso < ID >"
         curso.update_curso(arg)
     def do_add_aluno(self,arg):
+        "adicionar novo aluno :add_aluno"
         def validar_cpf_aluno(cpf):
             cpf = ''.join(filter(str.isdigit, cpf))
             
@@ -99,6 +107,7 @@ class CommandInterpreter(cmd.Cmd):
 
         aluno.add_aluno(nome,cpf,senha,telefone)
     def do_add_professor(self, arg):
+        "adicionar novo professor :add_professor"
         def validar_cpf_professor(cpf):
             # Remove caracteres não numéricos
             cpf = ''.join(filter(str.isdigit, cpf))
@@ -142,10 +151,12 @@ class CommandInterpreter(cmd.Cmd):
             return
     
         professor.add_professor(nome, cpf, email, senha, ID_curso)
-    def do_delete_aluno(self,arg):        
+    def do_delete_aluno(self,arg):  
+        "deletar aluno:delete_aluno <ID>"      
         aluno.delete_aluno(arg)
         
     def do_add_nota(self,arg):
+        "adicionar nova nota :add_nota" 
         try:
             ID_professor = int(input("Insira o ID do professor:"))
             if Nota.verificar_id_professor(ID_professor):
